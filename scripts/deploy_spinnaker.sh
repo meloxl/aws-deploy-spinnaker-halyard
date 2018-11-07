@@ -135,6 +135,13 @@ hal --color false config storage s3 edit \
 
 hal --color false config storage edit --type s3
 
+hal --color false config ci jenkins enable
+echo $PASSWORD | hal config ci jenkins master add my-jenkins-master \
+    --address $BASEURL \
+    --username $USERNAME \
+    --password # password will be read from STDIN to avoid appearing
+               # in your .bash_history
+
 hal --color false config security ui edit --override-base-url http://${DECK_ADDRESS}
 hal --color false config security api edit --override-base-url http://${GATE_ADDRESS}
 
