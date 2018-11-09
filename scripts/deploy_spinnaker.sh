@@ -142,7 +142,7 @@ echo $PASSWORD | hal config ci jenkins master add my-jenkins-master \
     --password # password will be read from STDIN to avoid appearing
                # in your .bash_history
                
-hal --color false provider docker-registry enable
+hal --color false config provider docker-registry enable
 echo $DOCKER_REGISTRY_PASSWORD | hal config provider docker-registry account add my-docker-registry \
    --address $DOCKER_REGISTRY_ADDRESS \
    --repositories $DOCKER_REGISTRY_REPOSITORIES \
