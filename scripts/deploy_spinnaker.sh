@@ -171,7 +171,7 @@ hal --color false config version edit --version 1.10.1
 #cp resources/halyard/deck.yml /home/spinnaker/.hal/default/service-settings/deck.yml
 
 mkdir -p /home/spinnaker/.hal/default/profiles/
-cp resources/halyard/spin-clouddriver.yml /home/spinnaker/.hal/default/profiles/spin-clouddriver.yml
+cp resources/halyard/clouddriver-local.yml /home/spinnaker/.hal/default/profiles/clouddriver-local.yml
 
 
 hal --color false deploy apply
