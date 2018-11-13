@@ -42,7 +42,7 @@ done
 EKS_EC2_VPC_STACK_NAME="spin-eks-ec2-vpc"
 
 if [ -z "${REGION}" ]; then
-    REGION="us-east-1"
+    REGION="us-west-2"
 fi
 
 if [ "${USE_SSM_FOR_SECRETS}" == true ]; then
@@ -117,7 +117,7 @@ echo "Executing Halyard commands to create a Halyard configuration file"
 hal --color false config provider aws account add my-aws-account \
     --account-id ${ACCOUNT_ID} \
     --assume-role ${SPINNAKER_MANAGED_ROLE} \
-    --regions us-east-1
+    --regions us-west-2
 
 hal --color false config provider aws bakery edit --aws-vpc-id ${BAKING_VPC}
 hal --color false config provider aws enable
