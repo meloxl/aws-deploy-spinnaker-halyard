@@ -21,9 +21,10 @@ This repository assumes you have a new AWS account and wish to test Spinnaker ou
 
     ```
     ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+    STAGING=prod
     aws cloudformation create-stack --stack-name codebuild-projects \
         --template-body "$(cat resources/cloudformation/codebuild-projects.yaml)" \
-        --parameters ParameterKey=CodeBuildArtifactsBucketName,ParameterValue=codebuild-artifacts-${ACCOUNT_ID} \
+        --parameters ParameterKey=CodeBuildArtifactsBucketName,ParameterValue=codebuild-artifacts-${STAGING}-${ACCOUNT_ID} \
                      ParameterKey=SourceLocation,ParameterValue=https://github.com/aws-samples/aws-deploy-spinnaker-halyard \
                      ParameterKey=SourceType,ParameterValue=GITHUB \
         --capabilities CAPABILITY_NAMED_IAM
@@ -46,7 +47,7 @@ You will need to add your user ARN to the EKS-Admin role, once this done you can
 
 ```$bash
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-aws s3 cp s3://codebuild-artifacts-${ACCOUNT_ID}/create-eks/files/resources/kubernetes/kubeconfig.yaml /tmp/kube/config
+aws s3 cp s3://codebuild-artifacts-${STAGING}-${ACCOUNT_ID}/create-eks/files/resources/kubernetes/kubeconfig.yaml /tmp/kube/config
 export KUBECONFIG=/tmp/kube/config
 kubectl get pods -n spinnaker
 ``` 
