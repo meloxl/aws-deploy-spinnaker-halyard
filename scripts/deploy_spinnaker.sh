@@ -117,7 +117,7 @@ echo "Executing Halyard commands to create a Halyard configuration file"
 hal --color false config provider aws account add my-aws-account \
     --account-id ${ACCOUNT_ID} \
     --assume-role ${SPINNAKER_MANAGED_ROLE} \
-    --regions us-west-2
+    --regions us-east-1
 
 hal --color false config provider aws bakery edit --aws-vpc-id ${BAKING_VPC}
 hal --color false config provider aws enable
