@@ -9,7 +9,7 @@ dockerRegistry:
   enabled: true
   accounts:
     - name: my-registry
-      address: https://268672101284dkr.ecr.us-east-1.amazonaws.com
+      address: https://268672101284dkr.ecr.us-west-2.amazonaws.com
       username: AWS
       passwordFile: /opt/passwords/my-registry.pass
       repositories:
