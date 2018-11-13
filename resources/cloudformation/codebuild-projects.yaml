@@ -14,7 +14,7 @@ Parameters:
 
   SourceLocation:
     Type: String
-    Default: https://git-codecommit.us-west-2.amazonaws.com/v1/repos/myrepowithcode
+    Default: https://git-codecommit.us-east-1.amazonaws.com/v1/repos/myrepowithcode
     Description: Location of source code for the create-eks and deploy spinnaker codebuild projects
 
   SourceType:
