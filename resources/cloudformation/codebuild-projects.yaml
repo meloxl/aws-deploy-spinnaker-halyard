@@ -125,6 +125,22 @@ Resources:
             Name: USE_SSM
             Type: PLAINTEXT
             Value: false
+          -
+            Name: JENKINS_USERNAME
+            Type: PLAINTEXT
+            Value: false
+          -
+            Name: JENKINS_PASSWORD
+            Type: PLAINTEXT
+            Value: false
+          -
+            Name: JENKINS_BASEURL
+            Type: PLAINTEXT
+            Value: false
+          -
+            Name: KUBERNETES_NAMESPACE
+            Type: PLAINTEXT
+            Value: false
       Name: deploy-spinnaker
       ServiceRole: !Ref CreateEKSSpinnakerRole
       Source:
