@@ -7,13 +7,13 @@ This repo is intended to:
 
 This is mostly for demo environment purposes, and there are some overly permissive IAM roles in places. If you wish to run this in production, you should modify the permissive roles to be more restrictive. This is intended to run as-is in a brand new AWS account.
 
-# Pre-requisites 
+# Pre-requisites
 
 This repository assumes you have a new AWS account and wish to test Spinnaker out, you will need:
 
 1. AWS CLI credentials setup for a user with at least Administrator access to create resources
 1. Access to create EC2 security groups
- 
+
 # Quick Start
 
 1. Fork this repository on GitHub (or CodeCommit)
@@ -23,8 +23,8 @@ This repository assumes you have a new AWS account and wish to test Spinnaker ou
     ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
     aws cloudformation create-stack --stack-name codebuild-projects \
         --template-body "$(cat resources/cloudformation/codebuild-projects.yaml)" \
-        --parameters ParameterKey=CodeBuildArtifactsBucketName,ParameterValue=codebuild-artifacts-prod-${ACCOUNT_ID} \
-                     ParameterKey=SourceLocation,ParameterValue=https://github.com/aws-samples/aws-deploy-spinnaker-halyard \
+        --parameters ParameterKey=CodeBuildArtifactsBucketName,ParameterValue=codebuild-artifacts-stage-${ACCOUNT_ID} \
+                     ParameterKey=SourceLocation,ParameterValue=https://github.com/fj-star-net/aws-deploy-spinnaker-halyard.git \
                      ParameterKey=SourceType,ParameterValue=GITHUB \
         --capabilities CAPABILITY_NAMED_IAM
     aws ec2 create-key-pair --key-name spinnaker-eks-keypair
@@ -46,10 +46,10 @@ You will need to add your user ARN to the EKS-Admin role, once this done you can
 
 ```$bash
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-aws s3 cp s3://codebuild-artifacts-prod-${ACCOUNT_ID}/create-eks/files/resources/kubernetes/kubeconfig.yaml /tmp/kube/config
+aws s3 cp s3://codebuild-artifacts-stage-${ACCOUNT_ID}/create-eks/files/resources/kubernetes/kubeconfig.yaml /tmp/kube/config
 export KUBECONFIG=/tmp/kube/config
 kubectl get pods -n spinnaker
-``` 
+```
 
 Once it is downloaded you can run kubectl commands as normal to read and output logs and see pod status.
 
@@ -64,9 +64,3 @@ If you need to tweak the halyard settings that are applied to the Spinnaker inst
 # Feedback
 
 This repository is meant to be an easy method of deploying Spinnaker to a brand new AWS account for demo purposes. Not all use cases are meant to be covered, but if new use cases can be added without making the repository difficult to use, then they are more than welcome. You can submit changes or fixes to this repository by submitting a pull request on this repository. We will review and provide feedback, we might need further follow up from pull request authors to make changes.
-
-
-
-
-
- 
