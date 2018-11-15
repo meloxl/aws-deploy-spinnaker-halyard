@@ -42,7 +42,7 @@ done
 EKS_EC2_VPC_STACK_NAME="spin-eks-ec2-vpc"
 
 if [ -z "${REGION}" ]; then
-    REGION="us-west-2"
+    REGION="us-east-1"
 fi
 
 if [ "${USE_SSM_FOR_SECRETS}" == true ]; then
@@ -117,7 +117,7 @@ echo "Executing Halyard commands to create a Halyard configuration file"
 hal --color false config provider aws account add my-aws-account \
     --account-id ${ACCOUNT_ID} \
     --assume-role ${SPINNAKER_MANAGED_ROLE} \
-    --regions us-west-2
+    --regions us-east-1
 
 hal --color false config provider aws bakery edit --aws-vpc-id ${BAKING_VPC}
 hal --color false config provider aws enable
@@ -142,13 +142,13 @@ echo $JENKINS_PASSWORD | hal config ci jenkins master add my-jenkins-master \
     --username $JENKINS_USERNAME \
     --password # password will be read from STDIN to avoid appearing
                # in your .bash_history
-               
+
 # hal --color false config provider docker-registry enable
 # echo $DOCKER_REGISTRY_PASSWORD | hal config provider docker-registry account add my-docker-registry \
 #    --address $DOCKER_REGISTRY_ADDRESS \
 #    --repositories $DOCKER_REGISTRY_REPOSITORIES \
 #    --username $DOCKER_REGISTRY_USERNAME \
-#    --password 
+#    --password
 
 hal --color false config security ui edit --override-base-url http://${DECK_ADDRESS}
 hal --color false config security api edit --override-base-url http://${GATE_ADDRESS}
