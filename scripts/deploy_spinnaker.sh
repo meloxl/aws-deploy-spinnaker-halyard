@@ -137,18 +137,18 @@ hal --color false config storage s3 edit \
 hal --color false config storage edit --type s3
 
 hal --color false config ci jenkins enable
-echo $PASSWORD | hal config ci jenkins master add my-jenkins-master \
-    --address $BASEURL \
-    --username $USERNAME \
+echo $JENKINS_PASSWORD | hal config ci jenkins master add my-jenkins-master \
+    --address $JENKINS_BASEURL \
+    --username $JENKINS_USERNAME \
     --password # password will be read from STDIN to avoid appearing
                # in your .bash_history
                
-hal --color false config provider docker-registry enable
-echo $DOCKER_REGISTRY_PASSWORD | hal config provider docker-registry account add my-docker-registry \
-   --address $DOCKER_REGISTRY_ADDRESS \
-   --repositories $DOCKER_REGISTRY_REPOSITORIES \
-   --username $DOCKER_REGISTRY_USERNAME \
-   --password 
+# hal --color false config provider docker-registry enable
+# echo $DOCKER_REGISTRY_PASSWORD | hal config provider docker-registry account add my-docker-registry \
+#    --address $DOCKER_REGISTRY_ADDRESS \
+#    --repositories $DOCKER_REGISTRY_REPOSITORIES \
+#    --username $DOCKER_REGISTRY_USERNAME \
+#    --password 
 
 hal --color false config security ui edit --override-base-url http://${DECK_ADDRESS}
 hal --color false config security api edit --override-base-url http://${GATE_ADDRESS}
