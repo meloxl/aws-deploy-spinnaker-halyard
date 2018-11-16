@@ -9,42 +9,42 @@ Parameters:
 
   KubeVpcBlock:
     Type: String
-    Default: 10.9.0.0/16
+    Default: 192.168.0.0/16
     Description: The CIDR range for the EKS VPC. This should be a valid private (RFC 1918) CIDR range.
 
   KubeSubnet01Block:
     Type: String
-    Default: 10.9.64.0/18
+    Default: 192.168.64.0/18
     Description: CidrBlock for subnet 01 within the EKS VPC
 
   KubeSubnet02Block:
     Type: String
-    Default: 10.9.128.0/18
+    Default: 192.168.128.0/18
     Description: CidrBlock for subnet 02 within the EKS VPC
 
   KubeSubnet03Block:
     Type: String
-    Default: 10.9.192.0/18
+    Default: 192.168.192.0/18
     Description: CidrBlock for subnet 03 within the EKS VPC
 
   Ec2VpcBlock:
     Type: String
-    Default: 10.8.0.0/16
+    Default: 10.0.0.0/16
     Description: The CIDR range for the EC2 VPC. This should be a vaid private (RFC 1918) CIDR range.
 
   Ec2Subnet01Block:
     Type: String
-    Default: 10.8.1.0/24
+    Default: 10.0.1.0/24
     Description: CidrBlock for subnet 01 within the EC2 VPC
 
   Ec2Subnet02Block:
     Type: String
-    Default: 10.8.2.0/24
+    Default: 10.0.2.0/24
     Description: CidrBlock for subnet 02 within the EC2 VPC
 
   Ec2Subnet03Block:
     Type: String
-    Default: 10.8.3.0/24
+    Default: 10.0.3.0/24
     Description: CidrBlock for subnet 03 within the EC2 VPC
 
   SpinnakerBucketName:
