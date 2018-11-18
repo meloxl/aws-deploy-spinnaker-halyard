@@ -143,6 +143,13 @@ hal --color false config storage edit --type s3
 #     --password # password will be read from STDIN to avoid appearing
 #                # in your .bash_history
 
+hal --color false config ci jenkins enable
+echo 34cd0010865a4b9daf599d662cd6df20 | hal config ci jenkins master add my-jenkins-master \
+    --address ec2-54-152-237-202.compute-1.amazonaws.com:8080 \
+    --username admin \
+    --password # password will be read from STDIN to avoid appearing
+               # in your .bash_history
+
 # hal --color false config provider docker-registry enable
 # echo $DOCKER_REGISTRY_PASSWORD | hal config provider docker-registry account add my-docker-registry \
 #    --address $DOCKER_REGISTRY_ADDRESS \
