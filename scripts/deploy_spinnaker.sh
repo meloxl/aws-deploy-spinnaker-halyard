@@ -122,8 +122,8 @@ hal --color false config provider aws account add my-aws-account \
 hal --color false config provider aws bakery edit --aws-vpc-id ${BAKING_VPC}
 hal --color false config provider aws enable
 
-# hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context spinnaker-context --namespaces default,spinnaker
-hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context spinnaker-context --namespaces ${KUBERNETES_NAMESPACE}
+hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context spinnaker-context --namespaces default,spinnaker
+# hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context spinnaker-context --namespaces ${KUBERNETES_NAMESPACE}
 hal --color false config features edit --artifacts true
 hal --color false config provider kubernetes enable
 
@@ -140,6 +140,13 @@ hal --color false config storage edit --type s3
 # echo $JENKINS_PASSWORD | hal config ci jenkins master add my-jenkins-master \
 #     --address $JENKINS_BASEURL \
 #     --username $JENKINS_USERNAME \
+#     --password # password will be read from STDIN to avoid appearing
+#                # in your .bash_history
+
+# hal --color false config ci jenkins enable
+# echo 34cd0010865a4b9daf599d662cd6df20 | hal config ci jenkins master add my-jenkins-master \
+#     --address http://ec2-54-152-237-202.compute-1.amazonaws.com:8080 \
+#     --username admin \
 #     --password # password will be read from STDIN to avoid appearing
 #                # in your .bash_history
 
