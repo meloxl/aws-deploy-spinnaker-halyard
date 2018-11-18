@@ -122,8 +122,8 @@ hal --color false config provider aws account add my-aws-account \
 hal --color false config provider aws bakery edit --aws-vpc-id ${BAKING_VPC}
 hal --color false config provider aws enable
 
-# hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context spinnaker-context --namespaces default,spinnaker
-hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context spinnaker-context --namespaces ${KUBERNETES_NAMESPACE}
+hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context spinnaker-context --namespaces default,spinnaker
+# hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context spinnaker-context --namespaces ${KUBERNETES_NAMESPACE}
 hal --color false config features edit --artifacts true
 hal --color false config provider kubernetes enable
 
