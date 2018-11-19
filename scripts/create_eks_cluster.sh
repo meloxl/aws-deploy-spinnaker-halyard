@@ -61,7 +61,7 @@ fi
 
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 WORKER_AMI="ami-0440e4f6b9713faf6"
-WORKER_TYPE="t2.medium"
+WORKER_TYPE="t2.large"
 EKS_EC2_VPC_STACK_NAME="spin-eks-ec2-vpc"
 EKS_WORKER_STACK_NAME="spinnaker-infra-eks-nodes"
 CODEBUILD_STACK_NAME="codebuild-projects"
