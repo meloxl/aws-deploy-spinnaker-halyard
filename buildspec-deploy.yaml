@@ -17,6 +17,4 @@ phases:
       - ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
       - aws s3 cp s3://codebuild-artifacts-prod-${ACCOUNT_ID}/create-eks/files/resources/kubernetes/kubeconfig-no-role.yaml /home/spinnaker/.kube/config
       - aws s3 cp s3://eks-test-268672101284/mfdev.config resources/kubernetes/mfdev.config
-      - ls -al resources/kubernetes/
-      - xxx
       - su spinnaker -c "./scripts/deploy_spinnaker.sh -S ${USE_SSM} -f ${SECURITY_GROUP_ID}"
