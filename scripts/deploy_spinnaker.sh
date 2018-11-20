@@ -137,7 +137,7 @@ TOKEN=$(kubectl get secret \
 kubectl config set-credentials ${CONTEXT}-token-user --token ${TOKEN}
 kubectl config set-context ${CONTEXT}-spinnaker-context --cluster=kubernetes --user=${CONTEXT}-token-user
 
-hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context ${CONTEXT}-spinnaker-context --namespaces default,spinnaker
+hal --color false config provider kubernetes account add my-${CONTEXT}-k8s-account --provider-version v2 --context ${CONTEXT}-spinnaker-context --namespaces default,spinnaker
 
 
 hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context spinnaker-context --namespaces default,spinnaker
