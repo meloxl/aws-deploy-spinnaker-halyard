@@ -122,6 +122,24 @@ hal --color false config provider aws account add my-aws-account \
 hal --color false config provider aws bakery edit --aws-vpc-id ${BAKING_VPC}
 hal --color false config provider aws enable
 
+# add mfdev EKS
+CONTEXT="mfdev"
+aws s3 cp s3://eks-test-268672101284/mfdev.config resources/kubernetes/mfdev.config
+export KUBECONFIG=resources/kubernetes/mfdev.config
+kubectl describe namespace spinnaker && echo "Namespace already exists" || kubectl create namespace spinnaker
+kubectl apply -f resources/kubernetes/spinnaker-k8s-role.yaml
+TOKEN=$(kubectl get secret \
+    $(kubectl get serviceaccount spinnaker-service-account \
+       -n spinnaker \
+       -o jsonpath='{.secrets[0].name}') \
+   -n spinnaker \
+   -o jsonpath='{.data.token}' | base64 -d)
+kubectl config set-credentials ${CONTEXT}-token-user --token ${TOKEN}
+kubectl config set-context ${CONTEXT}-spinnaker-context --cluster=kubernetes --user=${CONTEXT}-token-user
+
+hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context ${CONTEXT}-spinnaker-context --namespaces default,spinnaker
+
+
 hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context spinnaker-context --namespaces default,spinnaker
 # hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context spinnaker-context --namespaces ${KUBERNETES_NAMESPACE}
 hal --color false config features edit --artifacts true
