@@ -124,6 +124,7 @@ hal --color false config provider aws enable
 
 # add mfdev EKS
 CONTEXT="mfdev"
+id
 ls -al resources/kubernetes/
 export KUBECONFIG=resources/kubernetes/mfdev-rw.config
 kubectl describe namespace spinnaker && echo "Namespace already exists" || kubectl create namespace spinnaker
