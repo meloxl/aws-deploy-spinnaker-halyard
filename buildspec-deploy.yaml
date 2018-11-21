@@ -20,4 +20,5 @@ phases:
       # https://github.com/kubernetes/kubernetes/issues/67676
       - ln -s resources/kubernetes/mfdev.config resources/kubernetes/mfdev-rw.config
       - chown $(id -u):$(id -g) resources/kubernetes/mfdev.config
+      - chown $(id -u):$(id -g) resources/kubernetes/mfdev-rw.config
       - su spinnaker -c "./scripts/deploy_spinnaker.sh -S ${USE_SSM} -f ${SECURITY_GROUP_ID}"
