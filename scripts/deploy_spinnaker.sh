@@ -127,18 +127,17 @@ CONTEXT="mfdev"
 id
 ls -al resources/kubernetes/
 # cat resources/kubernetes/mfdev-rw.config
-sleep 30
+
 export KUBECONFIG="/home/spinnaker/.kube/config:/home/spinnaker/.kube/system"
 kubectl cluster-info
 kubectl describe namespace spinnaker && echo "Namespace already exists" || kubectl create namespace spinnaker
 kubectl apply -f resources/kubernetes/spinnaker-k8s-role.yaml
 TOKEN=$(kubectl get secret \
-    $(kubectl get serviceaccount spinnaker-service-account \
-       -n spinnaker \
-       -o jsonpath='{.secrets[0].name}') \
-   -n spinnaker \
-   -o jsonpath='{.data.token}' | base64 -d)
-kubectl config set-credentials ${CONTEXT}-token-user --token ${TOKEN}
+            $(kubectl get serviceaccount spinnaker-service-account \
+               -n spinnaker \
+               -o jsonpath='{.secrets[0].name}') \
+           -n spinnaker \
+           -o jsonpath='{.data.token}' | base64 -d)kubectl config set-credentials ${CONTEXT}-token-user --token ${TOKEN}
 kubectl config set-context ${CONTEXT}-spinnaker-context --cluster=kubernetes --user=${CONTEXT}-token-user
 kubectl config use-context ${CONTEXT}-spinnaker-context
 
