@@ -188,7 +188,7 @@ fi
 
 hal --color false config deploy edit --type distributed --account-name my-k8s-account
 
-hal --color false config deploy edit --type distributed --account-name my-${CONTEXT}-k8s-account
+# hal --color false config deploy edit --type distributed --account-name my-${CONTEXT}-k8s-account
 
 hal --color false config version edit --version 1.10.1
 
