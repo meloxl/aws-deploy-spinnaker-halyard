@@ -16,8 +16,10 @@ phases:
       - ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
       - ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
       - aws s3 cp s3://codebuild-artifacts-prod-${ACCOUNT_ID}/create-eks/files/resources/kubernetes/kubeconfig-no-role.yaml /home/spinnaker/.kube/config
-      - aws s3 cp s3://eks-test-268672101284/mfdev.config resources/kubernetes/mfdev.config
-      - swapoff -a
+      - aws s3 cp s3://eks-test-268672101284/mfdev.config /etc/kube/mfdev.config
+      - ln -s /etc/kube/mfdev.config /home/spinnaker/.kube/system
+      - touch /home/spinnaker/.kube/mfdev.config
+      # - swapoff -a
       # https://github.com/kubernetes/kubernetes/issues/44665
       - chown spinnaker:spinnaker resources/kubernetes/mfdev.config
       - chmod 777 resources/kubernetes/mfdev.config
