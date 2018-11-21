@@ -66,7 +66,7 @@ SPINNAKER_MANAGED_ROLE="role/SpinnakerManaged"
 echo "Creating some kubernetes resources before running halyard"
 kubectl apply -f resources/kubernetes/lb-services.yaml -n spinnaker
 kubectl apply -f resources/kubernetes/spinnaker-k8s-role.yaml
-whoami
+
 GATE_ADDRESS=$(kubectl describe svc gate-lb -n spinnaker | grep LoadBalancer\ Ingress | awk '{print $3}')
 DECK_ADDRESS=$(kubectl describe svc deck-lb -n spinnaker | grep LoadBalancer\ Ingress | awk '{print $3}')
 until [ "${GATE_ADDRESS}" != "" ]; do
@@ -124,6 +124,7 @@ hal --color false config provider aws enable
 
 # add mfdev EKS
 CONTEXT="mfdev"
+ls -al resources/kubernetes/
 export KUBECONFIG=resources/kubernetes/mfdev-rw.config
 kubectl describe namespace spinnaker && echo "Namespace already exists" || kubectl create namespace spinnaker
 kubectl apply -f resources/kubernetes/spinnaker-k8s-role.yaml
