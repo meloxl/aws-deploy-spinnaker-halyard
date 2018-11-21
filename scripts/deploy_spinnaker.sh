@@ -134,7 +134,8 @@ TOKEN=$(kubectl get secret \
                -n spinnaker \
                -o jsonpath='{.secrets[0].name}') \
            -n spinnaker \
-           -o jsonpath='{.data.token}' | base64 -d)kubectl config set-credentials ${CONTEXT}-token-user --token ${TOKEN}
+           -o jsonpath='{.data.token}' | base64 -d)
+kubectl config set-credentials ${CONTEXT}-token-user --token ${TOKEN}
 kubectl config set-context ${CONTEXT}-spinnaker-context --cluster=kubernetes --user=${CONTEXT}-token-user
 
 hal --color false config provider kubernetes account add my-${CONTEXT}-k8s-account --provider-version v2 --context ${CONTEXT}-spinnaker-context --namespaces default,spinnaker
