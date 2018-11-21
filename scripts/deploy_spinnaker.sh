@@ -124,8 +124,6 @@ hal --color false config provider aws enable
 
 # add mfdev EKS
 CONTEXT="mfdev"
-kubectl --help
-docker ps
 id
 ls -al resources/kubernetes/
 export KUBECONFIG=resources/kubernetes/mfdev-rw.config
