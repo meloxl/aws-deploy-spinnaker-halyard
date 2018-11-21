@@ -127,7 +127,7 @@ CONTEXT="mfdev"
 
 export KUBECONFIG="/home/spinnaker/.kube/mfdev.config:/home/spinnaker/.kube/system"
 kubectl describe namespace spinnaker && echo "Namespace already exists" || kubectl create namespace spinnaker
-# kubectl apply -f resources/kubernetes/spinnaker-k8s-role.yaml
+kubectl apply -f resources/kubernetes/spinnaker-k8s-role.yaml
 TOKEN=$(kubectl get secret \
             $(kubectl get serviceaccount spinnaker-service-account \
                -n spinnaker \
