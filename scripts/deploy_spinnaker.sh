@@ -126,8 +126,8 @@ hal --color false config provider aws enable
 CONTEXT="mfdev"
 id
 ls -al resources/kubernetes/
-cat resources/kubernetes/mfdev-rw.config
-export KUBECONFIG=resources/kubernetes/mfdev-rw.config
+# cat resources/kubernetes/mfdev-rw.config
+export KUBECONFIG=resources/kubernetes/mfdev.config
 kubectl cluster-info
 kubectl describe namespace spinnaker && echo "Namespace already exists" || kubectl create namespace spinnaker
 kubectl apply -f resources/kubernetes/spinnaker-k8s-role.yaml
