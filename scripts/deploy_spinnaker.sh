@@ -125,7 +125,7 @@ hal --color false config provider aws enable
 # add mfdev EKS
 CONTEXT="mfdev"
 
-export KUBECONFIG="/home/spinnaker/.kube/mfdev.config:/home/spinnaker/.kube/system"
+# export KUBECONFIG="/home/spinnaker/.kube/mfdev.config:/home/spinnaker/.kube/system"
 # kubectl describe namespace spinnaker && echo "Namespace already exists" || kubectl create namespace spinnaker
 # kubectl apply -f resources/kubernetes/spinnaker-k8s-role.yaml
 # TOKEN=$(kubectl get secret \
@@ -137,7 +137,8 @@ export KUBECONFIG="/home/spinnaker/.kube/mfdev.config:/home/spinnaker/.kube/syst
 # kubectl config set-credentials ${CONTEXT}-token-user --token ${TOKEN}
 # kubectl config set-context ${CONTEXT}-spinnaker-context --cluster=kubernetes --user=${CONTEXT}-token-user
 
-hal --color false config provider kubernetes account add my-${CONTEXT}-k8s-account --provider-version v2 --context ${CONTEXT}-spinnaker-context --namespaces default,spinnaker
+# hal --color false config provider kubernetes account add my-${CONTEXT}-k8s-account --provider-version v2 --context ${CONTEXT}-spinnaker-context --namespaces default,spinnaker
+hal --color false config provider kubernetes account add my-${CONTEXT}-k8s-account --provider-version v2 --context arn:aws:eks:us-east-1:155561722982:cluster/eks-test-1 --namespaces default,spinnaker
 
 
 hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context spinnaker-context --namespaces default,spinnaker
