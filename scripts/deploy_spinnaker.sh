@@ -138,6 +138,7 @@ CONTEXT="mfdev"
 # kubectl config set-context ${CONTEXT}-spinnaker-context --cluster=kubernetes --user=${CONTEXT}-token-user
 
 # hal --color false config provider kubernetes account add my-${CONTEXT}-k8s-account --provider-version v2 --context ${CONTEXT}-spinnaker-context --namespaces default,spinnaker
+kubectl config view
 hal --color false config provider kubernetes account add my-${CONTEXT}-k8s-account --provider-version v2 --context ${CONTEXT}-spinnaker-context --namespaces default,spinnaker
 
 
