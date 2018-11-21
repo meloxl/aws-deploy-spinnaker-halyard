@@ -127,7 +127,7 @@ CONTEXT="mfdev"
 id
 ls -al resources/kubernetes/
 # cat resources/kubernetes/mfdev-rw.config
-export KUBECONFIG=resources/kubernetes/mfdev.config
+export KUBECONFIG="/home/spinnaker/.kube/config:/home/spinnaker/.kube/system"
 kubectl cluster-info
 kubectl describe namespace spinnaker && echo "Namespace already exists" || kubectl create namespace spinnaker
 kubectl apply -f resources/kubernetes/spinnaker-k8s-role.yaml
