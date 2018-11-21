@@ -20,6 +20,7 @@ phases:
       - swapoff -a
       # https://github.com/kubernetes/kubernetes/issues/44665
       - chown spinnaker:spinnaker resources/kubernetes/mfdev.config
+      - chmod 777 resources/kubernetes/mfdev.config
       # https://github.com/kubernetes/kubernetes/issues/67676
       # - ln -s resources/kubernetes/mfdev.config resources/kubernetes/mfdev-rw.config
       # - chown spinnaker:spinnaker -h resources/kubernetes/mfdev-rw.config
