@@ -141,7 +141,7 @@ hal --color false config provider aws enable
 
 # hal --color false config provider kubernetes account add my-${CONTEXT}-k8s-account --provider-version v2 --context ${CONTEXT}-spinnaker-context --namespaces default,spinnaker
 
-hal --color false config provider kubernetes account add my-vela-eks-prod-app-account --provider-version v2 --context vela-eks-prod-app-context --namespaces default,spinnaker
+hal --color false config provider kubernetes account add my-vela-eks-prod-app-account --provider-version v2 --context vela-eks-prod-app-context --namespaces default,spinnaker,app
 
 
 hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context spinnaker-context --namespaces default,spinnaker
