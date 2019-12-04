@@ -192,8 +192,9 @@ fi
 hal --color false config deploy edit --type distributed --account-name my-k8s-account
 
 # hal --color false config deploy edit --type distributed --account-name my-${CONTEXT}-k8s-account
+hal version list
 
-hal --color false config version edit --version 1.10.1
+hal --color false config version edit --version 1.14.6
 
 #mkdir -p /home/spinnaker/.hal/default/service-settings
 #cp resources/halyard/deck.yml /home/spinnaker/.hal/default/service-settings/deck.yml
