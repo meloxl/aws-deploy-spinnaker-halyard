@@ -103,7 +103,7 @@ elif [ ! -z "${LB_SG}" ]; then
             fi
         done
         NEW_GROUPS=$(echo ${NEW_GROUPS} | sed -e 's/^[ \t]*//')
-        NEW_GROUPS="${NEW_GROUPS} ${LB_SG}"
+        # NEW_GROUPS="${NEW_GROUPS} ${LB_SG}"
         aws elb apply-security-groups-to-load-balancer --load-balancer-name ${LB} --security-groups ${NEW_GROUPS}
         for PREV_GROUP in ${PREV_GROUPS}; do
             if [ "${PREV_GROUP}" != "${LB_SG}" ]; then
@@ -143,9 +143,9 @@ hal --color false config provider aws enable
 
 # hal --color false config provider kubernetes account add my-${CONTEXT}-k8s-account --provider-version v2 --context ${CONTEXT}-spinnaker-context --namespaces default,spinnaker
 
-hal --color false config provider kubernetes account add my-vela-eks-prod-app-account --provider-version v2 --context vela-eks-prod-app-context --namespaces default,spinnaker,app
+# hal --color false config provider kubernetes account add my-vela-eks-prod-app-account --provider-version v2 --context vela-eks-prod-app-context --namespaces default,spinnaker,app
 
-hal --color false config provider kubernetes account add carina-stg-eks-account --provider-version v2 --context carina-stg-eks-context --namespaces default,spinnaker,app
+# hal --color false config provider kubernetes account add carina-stg-eks-account --provider-version v2 --context carina-stg-eks-context --namespaces default,spinnaker,app
 
 hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context spinnaker-context --namespaces default,spinnaker
 # hal --color false config provider kubernetes account add my-k8s-account --provider-version v2 --context spinnaker-context --namespaces ${KUBERNETES_NAMESPACE}
