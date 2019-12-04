@@ -202,7 +202,7 @@ hal --color false config version edit --version 1.10.1
 # cp resources/halyard/clouddriver-local.yml /home/spinnaker/.hal/default/profiles/clouddriver-local.yml
 
 
-hal --color false deploy apply
+hal --color false deploy apply --validate=false
 
 set +x
 echo "The Spinnaker UI (deck) should be accessible at the following address: ${DECK_ADDRESS}"
