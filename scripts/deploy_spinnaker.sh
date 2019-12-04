@@ -63,8 +63,10 @@ ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 SPINNAKER_BUCKET=$(aws cloudformation describe-stacks --stack-name ${EKS_EC2_VPC_STACK_NAME} --query 'Stacks[0].Outputs[?OutputKey==`SpinnakerDataBucket`].OutputValue' --output text | cut -d ":" -f6)
 SPINNAKER_MANAGED_ROLE="role/SpinnakerManaged"
 
+kubectl version
+
 echo "Creating some kubernetes resources before running halyard"
-kubectl apply -f resources/kubernetes/lb-services.yaml -n spinnaker
+kubectl apply -f resources/kubernetes/lb-services.yaml -n spinnaker --validate=false
 kubectl apply -f resources/kubernetes/spinnaker-k8s-role.yaml
 
 GATE_ADDRESS=$(kubectl describe svc gate-lb -n spinnaker | grep LoadBalancer\ Ingress | awk '{print $3}')
