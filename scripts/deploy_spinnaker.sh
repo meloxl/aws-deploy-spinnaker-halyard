@@ -205,6 +205,8 @@ hal --color false config version edit --version 1.14.6
 
 hal --color false deploy apply
 
+kubectl get svc
+hal deploy connect
 set +x
 echo "The Spinnaker UI (deck) should be accessible at the following address: ${DECK_ADDRESS}"
 echo "The Spinnaker API server (gate) should be at the following address: ${GATE_ADDRESS}"
