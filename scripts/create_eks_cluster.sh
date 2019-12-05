@@ -127,6 +127,8 @@ function updateKubeRoles {
         sed -e "s|%%EKS_ADMIN_ARN%%|${EKS_ADMIN_ARN}|g;s|%%CODEBUILD_ROLE_ARN%%|${CODEBUILD_ROLE_ARN}|g;s|%%EKS_NODE_INSTANCE_ROLE_ARN%%|${EKS_NODE_INSTANCE_ROLE_ARN}|g" < templates/aws-auth-cm.tmpl.yaml > resources/kubernetes/aws-auth-cm.yaml
         kubectl apply -f resources/kubernetes/aws-auth-cm.yaml
     fi
+		ls resources/kubernetes
+		kubectl get nodes
 }
 
 function main {
