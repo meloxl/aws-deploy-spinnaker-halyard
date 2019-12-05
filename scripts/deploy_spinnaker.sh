@@ -46,7 +46,7 @@ if [ -z "${REGION}" ]; then
 fi
 
 if [ "${USE_SSM_FOR_SECRETS}" == true ]; then
-    LB_SG=""
+    LB_SG="sg-0291e7d805558ca97"
     AUTHN_CLIENT_ID=$(aws ssm get-parameters --names github-authn-client-id --with-decryption --query Parameters[0].Value --output text)
     AUTHN_CLIENT_SECRET=$(aws ssm get-parameters --names github-authn-client-secret --with-decryption --query Parameters[0].Value --output text)
     AUTHZ_ACCESS_TOKEN=$(aws ssm get-parameters --names github-authz-token --with-decryption --query Parameters[0].Value --output text)
@@ -103,7 +103,7 @@ elif [ ! -z "${LB_SG}" ]; then
             fi
         done
         NEW_GROUPS=$(echo ${NEW_GROUPS} | sed -e 's/^[ \t]*//')
-        # NEW_GROUPS="${NEW_GROUPS} ${LB_SG}"
+        NEW_GROUPS="${NEW_GROUPS} ${LB_SG}"
         aws elb apply-security-groups-to-load-balancer --load-balancer-name ${LB} --security-groups ${NEW_GROUPS}
         for PREV_GROUP in ${PREV_GROUPS}; do
             if [ "${PREV_GROUP}" != "${LB_SG}" ]; then
