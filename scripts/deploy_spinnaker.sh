@@ -103,7 +103,7 @@ elif [ ! -z "${LB_SG}" ]; then
             fi
         done
         NEW_GROUPS=$(echo ${NEW_GROUPS} | sed -e 's/^[ \t]*//')
-        # NEW_GROUPS="${NEW_GROUPS} ${LB_SG}"
+        NEW_GROUPS="${NEW_GROUPS} ${LB_SG}"
         aws elb apply-security-groups-to-load-balancer --load-balancer-name ${LB} --security-groups ${NEW_GROUPS}
         for PREV_GROUP in ${PREV_GROUPS}; do
             if [ "${PREV_GROUP}" != "${LB_SG}" ]; then
