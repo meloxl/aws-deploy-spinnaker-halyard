@@ -168,6 +168,14 @@ echo $JENKINS_PASSWORD | hal config ci jenkins master add my-jenkins-master \
     --password # password will be read from STDIN to avoid appearing
                # in your .bash_history
 
+ECR_REGISTRY=123456789123.dkr.ecr.us-west-2.amazonaws.com
+
+hal config provider docker-registry account add my-ecr-registry \
+    --address $ECR_REGISTRY \
+    --username AWS \
+    --password-command "aws --region $REGION ecr get-authorization-token --output text --query 'authorizationData[].authorizationToken' | base64 -d | sed 's/^AWS://'"
+
+
 # hal --color false config provider docker-registry enable
 # echo $DOCKER_REGISTRY_PASSWORD | hal config provider docker-registry account add my-docker-registry \
 #    --address $DOCKER_REGISTRY_ADDRESS \
