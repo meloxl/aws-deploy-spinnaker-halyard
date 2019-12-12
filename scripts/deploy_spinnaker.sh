@@ -168,7 +168,7 @@ echo $JENKINS_PASSWORD | hal config ci jenkins master add my-jenkins-master \
     --password # password will be read from STDIN to avoid appearing
                # in your .bash_history
 
-ECR_REGISTRY=123456789123.dkr.ecr.us-west-2.amazonaws.com
+ECR_REGISTRY=268672101284.dkr.ecr.us-east-1.amazonaws.com
 
 hal config provider docker-registry account add my-ecr-registry \
     --address $ECR_REGISTRY \
